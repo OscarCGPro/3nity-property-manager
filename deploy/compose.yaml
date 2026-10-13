@@ -15,8 +15,8 @@ x-environment: &environment
   APPCREDZ_TOKEN_SECRET: ${APPCREDZ_TOKEN_SECRET:?generate deploy/.env}
   CIPHER_KEY: ${CIPHER_KEY:?generate deploy/.env}
   CIPHER_IV_KEY: ${CIPHER_IV_KEY:?generate deploy/.env}
-  APP_DOMAIN: 3nity.localhost
-  APP_PROTOCOL: http
+  APP_DOMAIN: ${APP_DOMAIN:-3nity.localhost}
+  APP_PROTOCOL: ${APP_PROTOCOL:-http}
   EMAILER_URL: http://emailer:8400/emailer
   PDFGENERATOR_URL: http://pdfgenerator:8300/pdfgenerator
   DEMO_MODE: 'false'
@@ -115,8 +115,8 @@ services:
       <<: *environment
       PORT: '8400'
       ALLOW_SENDING_EMAILS: 'false'
-      LANDLORD_APP_URL: http://3nity.localhost:8088/landlord
-      TENANT_APP_URL: http://3nity.localhost:8088/tenant
+      LANDLORD_APP_URL: ${PUBLIC_APP_URL:-http://3nity.localhost:8088}/landlord
+      TENANT_APP_URL: ${PUBLIC_APP_URL:-http://3nity.localhost:8088}/tenant
     command: [node, services/emailer/src/index.js]
   pdfgenerator:
     <<: *backend
@@ -171,7 +171,7 @@ services:
       APP_NAME: 3nity Ventures
       SIGNUP: 'false'
       DEMO_MODE: 'false'
-      GATEWAY_URL: http://3nity.localhost:8088
+      GATEWAY_URL: ${PUBLIC_APP_URL:-http://3nity.localhost:8088}
       DOCKER_GATEWAY_URL: http://gateway:8080
       CORS_ENABLED: 'false'
   tenant:
@@ -193,7 +193,7 @@ services:
       BASE_PATH: /tenant
       APP_NAME: 3nity Ventures
       DEMO_MODE: 'false'
-      GATEWAY_URL: http://3nity.localhost:8088
+      GATEWAY_URL: ${PUBLIC_APP_URL:-http://3nity.localhost:8088}
       DOCKER_GATEWAY_URL: http://gateway:8080
       CORS_ENABLED: 'false'
 

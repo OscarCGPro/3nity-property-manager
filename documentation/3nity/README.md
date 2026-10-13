@@ -6,10 +6,10 @@ This folder defines the rental-management and seller-finance servicing extension
 
 - Base: MicroRealEstate `master`, commit `479d0ad703436071b64dfdf4e48321c121d8efb5`, December 9, 2025.
 - License: MIT at that exact commit; the original `LICENSE` is retained.
-- Fork default branch: `main`, reset to this same MIT commit.
+- Fork was initially reset to this MIT commit. `main` now contains the rental/MCP foundation from merged PR #1 (`063ff76ff5f6e010f22145a085d4088cdf189abe`).
 - Newer upstream `main` uses the Sustainable Use License and must not be merged into this fork without a separate licensing decision.
 - GitHub Actions are disabled until inherited workflows have been reviewed.
-- Development now includes a private Compose deployment, runtime/dependency compatibility fixes, API read-only enforcement, a stdio MCP adapter, bootstrap and acceptance checks. Default `main` remains the original MIT baseline; feature work is in a draft pull request.
+- Development now includes a private Compose deployment, runtime/dependency compatibility fixes, API read-only enforcement, a stdio MCP adapter, bootstrap and acceptance checks. PR #1 was merged by the repository account on October 13; browser-access follow-up work is on the feature branch in a separate review.
 
 ## Documents
 

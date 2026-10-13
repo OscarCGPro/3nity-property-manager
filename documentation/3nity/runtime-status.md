@@ -4,8 +4,8 @@ Verified October 13, 2026. This is an internal test installation, not live loan 
 
 ## Implemented
 
-- One Docker Compose project with source-built backend and landlord/tenant images, local authenticated MongoDB, password-protected Redis and persistent document/template/upload volumes. Databases have no published host ports. The gateway alone publishes to host loopback and is accessed through SSH.
-- Separate `3nity.localhost` browser hostname and cookie scope; USD, English (`en`, the supported UI locale) and America/Chicago operating timezone.
+- One Docker Compose project with source-built backend and landlord/tenant images, local authenticated MongoDB, password-protected Redis and persistent document/template/upload volumes. Databases have no published host ports. The gateway alone publishes to host loopback. Tailscale Serve proxies the browser interface privately; SSH remains the administration/MCP transport.
+- Configurable browser origin and matching cookie scope; the installed link uses the VPS Tailscale DNS name; USD, English (`en`, the supported UI locale) and America/Chicago operating timezone.
 - Closed public registration, host-generated operator credentials and a dedicated machine `read_only` principal. Secrets stay outside Git and are not printed in chat.
 - Five private stdio MCP tools: properties, tenants, leases, monthly rents and dashboard. The backend rejects reader mutation and sensitive configuration/document routes. The adapter verifies the configured organization, bounds responses and refreshes expired access tokens.
 - Node 22 runtime; Next 14.2.35 and selected dependency patches; separate application/plugin TypeScript versions; bounded build memory. The Next standalone runtime disables experimental require-module behavior to match its traced dependency files.
@@ -14,6 +14,7 @@ Verified October 13, 2026. This is an internal test installation, not live loan 
 ## Verification
 
 - All ten application/data containers healthy; gateway and landlord health endpoints respond successfully.
+- Direct Tailscale DNS link opened the sign-in page in the Mac browser. Requests from the Mac verified operator sign-in, matching refresh-cookie domain, session renewal, primary property reads, closed registration and reader mutation denial after changing the origin. Browser form submission on this hostname was not separately automated; existing browser login verification below was performed on the earlier localhost origin.
 - Browser operator login, correct organization/route, dashboard, property listing and opening the property editor verified. The primary organization has no property records. Synthetic API fixtures are isolated in a clearly named acceptance organization.
 - Seven focused policy/client tests pass: write/configuration denial, enumerated reads, disabled mail in production, organization mismatch, fixed paths, token retry and response bounds.
 - Live API acceptance: operator creates/reads a synthetic property, unauthenticated access fails, registration is closed, reader writes/configuration fail, foreign organization reads fail, and the primary data remains unchanged.
@@ -31,4 +32,4 @@ Next modules: separate loan ledger, contract-specific schedules/allocation, reve
 
 ## Access
 
-Use the SSH tunnel and MCP launch commands in [deploy/README.md](../../deploy/README.md). Operator login details are in a private host file outside the checkout. Do not commit them, put them in a skill or copy them into a chat. Initial default `main` remains the MIT baseline; implementation is on `build/private-staging` and the draft review branch. The author has not merged the change.
+Use the Tailscale browser link and MCP launch commands in [deploy/README.md](../../deploy/README.md). The link works without an SSH tunnel while Tailscale is connected. HTTPS certificate enablement requires the CG tailnet administrator; currently the browser uses HTTP over Tailscale encryption. No Funnel or Vercel deployment was created. Operator login details are in a private host file outside the checkout. Do not commit them, put them in a skill or copy them into a chat. PR #1 was merged by the repository account on October 13. `main` includes the installed rental/MCP foundation; browser-access changes remain on `build/private-staging` for separate review. This agent has not performed a merge.
