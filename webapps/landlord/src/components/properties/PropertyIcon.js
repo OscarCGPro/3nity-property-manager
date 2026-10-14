@@ -17,6 +17,7 @@ export default function PropertyIcon({ type, className }) {
     case 'store':
       TypeIcon = LuStore;
       break;
+    case 'house':
     case 'apartment':
       TypeIcon = LuHome;
       break;

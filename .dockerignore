@@ -6,6 +6,9 @@
 .yarn/install-state.gz
 .dockerignore
 .env*
+**/.env*
+**/operator-credentials*
+**/import-receipt*
 .git*
 ./backup
 ./cli

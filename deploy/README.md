@@ -54,3 +54,16 @@ Current MCP tools are read-only. The API's machine-reader role rejects writes, c
 Stop/start with `docker compose ... stop` / `start`. Never use `down -v` on data you intend to retain. Named volumes preserve MongoDB, Redis, templates, uploads and generated documents across container recreation. Keep backups separately and prove restore before importing real records.
 
 Node 22 replaces the obsolete Node 20 runtime in this deployment. Next.js is patched to 14.2.35, with selected backend dependency patches. This is not a completed dependency/security audit; broader framework and legacy dependency maintenance remains a production gate.
+
+## Reviewed basic-record import
+
+See [portfolio-import.md](../documentation/3nity/portfolio-import.md). Back up the dedicated database first. Keep the reviewed JSON, credentials and receipts outside the source checkout. Import only after explicit owner authorization, using the digest of that exact private artifact:
+
+```sh
+python3 deploy/import-portfolio.py --batch /private/reviewed-batch.json \
+  --expected-sha256 REVIEWED_DIGEST --credentials /private/operator-credentials.json \
+  --approved-by OWNER --approval-date YYYY-MM-DD --approval-evidence 'Exact owner authorization' \
+  --receipt /private/import-receipt.json
+```
+
+The script verifies the batch digest before sending, signs in with the host-only human operator, imports through the organization-scoped API and reads back the result. It never prints credentials or record content. The API rejects machine import, changed/repeated-content conflicts, payments, charges, fee automation and guessed balances. Keep existing source/batch evidence and dated backups for recovery.

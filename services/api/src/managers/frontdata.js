@@ -429,6 +429,11 @@ export function toProperty(inputProperty, inputOccupant, inputOccupants) {
       }
     }
   }
+  if (!inputOccupant && inputProperty.occupancyOverride) {
+    property.status = inputProperty.occupancyOverride;
+    property.available = property.status === 'vacant';
+    property.leaseMissing = property.status === 'occupied';
+  }
   property.occupancyHistory = [];
   if (inputOccupants && inputOccupants.length) {
     property.occupancyHistory = inputOccupants.map((occupant) => {

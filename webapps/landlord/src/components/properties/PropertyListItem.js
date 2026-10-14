@@ -22,8 +22,16 @@ export default function PropertyListItem({ property }) {
   const onClick = useCallback(async () => {
     store.property.setSelected(property);
     store.appHistory.setPreviousPath(router.asPath);
-    await router.push(`/${store.organization.selected.name}/properties/${property._id}`);
-  }, [store.property, store.appHistory, store.organization.selected.name, property, router]);
+    await router.push(
+      `/${store.organization.selected.name}/properties/${property._id}`
+    );
+  }, [
+    store.property,
+    store.appHistory,
+    store.organization.selected.name,
+    property,
+    router
+  ]);
 
   return (
     <Card className="cursor-pointer" onClick={onClick}>
@@ -48,19 +56,25 @@ export default function PropertyListItem({ property }) {
         <div className="text-sm text-muted-foreground">
           {t('Rent excluding tax and expenses')}
         </div>
-        <NumberFormat
-          value={property.price}
-          className="text-3xl font-medium border py-2 px-4 rounded bg-card "
-        />
+        {property.price == null ? (
+          <div className="text-lg font-medium">Rent not set</div>
+        ) : (
+          <NumberFormat
+            value={property.price}
+            className="text-3xl font-medium border py-2 px-4 rounded bg-card "
+          />
+        )}
       </CardContent>
       <CardFooter className="p-0 flex-col">
         <div className="flex items-center justify-between w-full py-4 px-6">
           <div className="text-xs text-muted-foreground">
-            {property.status !== 'vacant'
-              ? t('Occupied by {{tenant}}', {
-                  tenant: property.occupantLabel
-                })
-              : null}
+            {property.leaseMissing
+              ? 'Current lease details pending'
+              : property.status !== 'vacant'
+                ? t('Occupied by {{tenant}}', {
+                    tenant: property.occupantLabel
+                  })
+                : null}
           </div>
           <Badge
             variant={property.status === 'vacant' ? 'success' : 'secondary'}

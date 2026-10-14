@@ -21,8 +21,17 @@ const PropertySchema = new mongoose.Schema<CollectionTypes.Property>({
     country: String
   },
 
-  price: Number
+  price: Number,
+  portfolioSourceId: String,
+  occupancyOverride: { type: String, enum: ['vacant', 'occupied'] }
 });
+PropertySchema.index(
+  { realmId: 1, portfolioSourceId: 1 },
+  {
+    unique: true,
+    partialFilterExpression: { portfolioSourceId: { $type: 'string' } }
+  }
+);
 export default mongoose.model<CollectionTypes.Property>(
   'Property',
   PropertySchema

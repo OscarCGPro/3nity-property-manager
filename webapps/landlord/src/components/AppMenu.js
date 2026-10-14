@@ -30,6 +30,13 @@ import useTranslation from 'next-translate/useTranslation';
 
 const menuItems = [
   {
+    key: 'portfolio',
+    labelId: 'Portfolio',
+    pathname: '/portfolio',
+    Icon: LuKeyRound,
+    dataCy: 'portfolioNav'
+  },
+  {
     key: 'dashboard',
     labelId: 'Dashboard',
     pathname: '/dashboard',

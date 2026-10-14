@@ -1,6 +1,6 @@
 # Extension architecture
 
-Status: mixed implementation/specification. Five rental MCP read tools and API-enforced reader access are implemented. Note collections, loan behavior, writes, followup/approval queues and notice delivery below remain specifications. See [runtime-status.md](runtime-status.md) for verified behavior.
+Status: mixed implementation/specification. Six MCP read tools, API-enforced reader access, approved portfolio metadata import and its owner UI are implemented. Note headers are stored in the immutable portfolio import, separate from rent. Servicing collections, loan behavior, MCP writes, followup/approval queues and notice delivery below remain specifications. See [runtime-status.md](runtime-status.md) for verified behavior.
 
 ## Runtime layout
 

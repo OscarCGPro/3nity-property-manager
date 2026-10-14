@@ -4,6 +4,7 @@ import * as emailManager from './managers/emailmanager.js';
 import * as leaseManager from './managers/leasemanager.js';
 import * as occupantManager from './managers/occupantmanager.js';
 import * as propertyManager from './managers/propertymanager.js';
+import * as portfolioManager from './managers/portfoliomanager.js';
 import * as realmManager from './managers/realmmanager.js';
 import * as rentManager from './managers/rentmanager.js';
 import { Middlewares, Service } from '@microrealestate/common';
@@ -83,6 +84,14 @@ export default function routes() {
     Middlewares.asyncWrapper(propertyManager.remove)
   );
   router.use('/properties', propertiesRouter);
+
+  const portfolioRouter = express.Router();
+  portfolioRouter.get('/', Middlewares.asyncWrapper(portfolioManager.all));
+  portfolioRouter.post(
+    '/import',
+    Middlewares.asyncWrapper(portfolioManager.importReviewed)
+  );
+  router.use('/portfolio', portfolioRouter);
 
   router.get(
     '/accounting/:year',

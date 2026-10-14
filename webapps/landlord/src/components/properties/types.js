@@ -1,4 +1,5 @@
 const types = [
+  { id: 'house', labelId: 'House' },
   { id: 'store', labelId: 'Store' },
   { id: 'building', labelId: 'Building' },
   { id: 'apartment', labelId: 'Apartment' },

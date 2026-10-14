@@ -1,6 +1,6 @@
 # Implementation sequence
 
-Status: phased implementation started. Private rental staging, API read-only controls and five MCP read tools are verified; see [runtime-status.md](runtime-status.md). Production hardening, write/approval workflows and seller-finance servicing remain open. No live records have been migrated.
+Status: phased implementation started. Private rental staging, API read-only controls, six MCP read tools and the approved basic portfolio import are verified; see [runtime-status.md](runtime-status.md). Production hardening, financial migration, write/approval workflows and seller-finance servicing remain open.
 
 ## 1. Harden and prove the rental baseline
 
@@ -35,7 +35,7 @@ Status: phased implementation started. Private rental staging, API read-only con
 
 ## 5. Connect 3nity data and reconcile
 
-Deferred at the owner's request on October 13, 2026. 3nity uses a different Google account. Do not use the historical folder found in CG's Drive.
+The separate Google account connection remains deferred. Owner-provided local files were reviewed on October 13; the owner authorized the basic-record batch and it was imported on October 14. Financial reconciliation and document migration remain open. Do not use the historical folder found in CG's Drive.
 
 - Connect the correct account or accept an owner-provided export into restricted storage outside this repository.
 - Inventory executed leases/notes, amendments, tenant/borrower contacts, property/collateral records and payment evidence. Maintain source IDs, hashes and dates.

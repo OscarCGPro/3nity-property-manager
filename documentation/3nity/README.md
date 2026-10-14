@@ -1,6 +1,6 @@
 # 3nity Ventures development fork
 
-This folder defines the rental-management and seller-finance servicing extension to MicroRealEstate. [Runtime status](runtime-status.md) records the installed private rental staging and read-only MCP. The loan and notice specifications remain future work. No tenant, borrower, bank, contract, or payment data belongs in this public repository.
+This folder defines the rental-management and seller-finance servicing extension to MicroRealEstate. [Runtime status](runtime-status.md) records the installed private rental staging and read-only MCP. Reviewed portfolio metadata import is implemented; the loan-calculation and notice specifications remain future work. No tenant, borrower, bank, contract, or payment data belongs in this public repository.
 
 ## Current state
 
@@ -17,10 +17,11 @@ This folder defines the rental-management and seller-finance servicing extension
 - [MCP, servicing, and collection workflows](architecture.md)
 - [Implementation sequence and acceptance criteria](implementation.md)
 - [VPS deployment plan](deployment.md)
+- [Reviewed portfolio import](portfolio-import.md)
 
 ## Ownership of records
 
-3nity is a separate legal and operating context. Sharing a host with CG does not grant CG agents access to 3nity. Use a dedicated database, network, service credentials, backups, and restricted document store. The source documents live in a separate Google account; connection and migration are deferred at the owner's request. Historical copies in another company's Drive must not seed production.
+3nity is a separate legal and operating context. Sharing a host with CG does not grant CG agents access to 3nity. Use a dedicated database, network, service credentials, backups, and restricted document store. The source documents live in a separate Google account; account connection remains deferred. The owner supplied local source files, reviewed the first batch and authorized its basic-record import on October 14, 2026. Historical copies in another company's Drive must not seed production.
 
 QuickBooks remains the accounting source during migration. Verify the connected company's identity and reconcile posted payments before deriving delinquency. Open invoices alone do not establish an unpaid obligation. Choose one system to issue each recurring charge before enabling billing, so the new app does not duplicate QuickBooks invoices.
 

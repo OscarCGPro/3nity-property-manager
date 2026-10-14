@@ -1,4 +1,10 @@
-import { ConnectionRole, LeaseTimeRange, Locale, PaymentMethod, UserRole } from './index.js';
+import {
+  ConnectionRole,
+  LeaseTimeRange,
+  Locale,
+  PaymentMethod,
+  UserRole
+} from './index.js';
 
 export type MongooseDocument<T> = {
   __v: number;
@@ -142,6 +148,8 @@ export namespace CollectionTypes {
     digicode: string;
     address: CollectionTypes.PartAddress;
     price: number;
+    portfolioSourceId?: string;
+    occupancyOverride?: 'vacant' | 'occupied';
 
     // TODO to remove, replaced by address
     building: string;
